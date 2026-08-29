@@ -111,9 +111,7 @@ def test_aplicar_filtros_limita_conexoes() -> None:
     from varredura_voos.filtros import aplicar_filtros
 
     direta = _oferta(2.0, 2.0)
-    com_escala = direta.model_copy(
-        update={"ida": direta.ida.model_copy(update={"conexoes": 2})}
-    )
+    com_escala = direta.model_copy(update={"ida": direta.ida.model_copy(update={"conexoes": 2})})
     aprovadas = aplicar_filtros([direta, com_escala], teto_duracao=TETO, max_conexoes=1)
     assert aprovadas == [direta]
 
