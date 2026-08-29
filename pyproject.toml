@@ -1,0 +1,63 @@
+[project]
+name = "varredura-voos"
+version = "0.1.0"
+description = "Varredura de passagens aéreas nacionais saindo do oeste do Paraná"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "httpx>=0.28",
+    "pydantic>=2.9",
+    "typer>=0.15",
+    "holidays>=0.60",
+]
+
+[project.scripts]
+varredura-voos = "varredura_voos.cli:app"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=6.0",
+    "ruff>=0.8",
+    "mypy>=1.13",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/varredura_voos"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-q"
+
+[tool.coverage.report]
+exclude_also = ["if TYPE_CHECKING:", "raise NotImplementedError"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "C4", "SIM", "RUF", "ANN", "D"]
+# N818 exige sufixo "Error" no nome das exceções. O código é todo em português,
+# e "ConfigInvalidaError" não é português nem inglês. Nomes como `ConfigInvalida`
+# e `OrcamentoEsgotado` dizem a mesma coisa na língua do resto do projeto.
+ignore = ["D203", "D213", "N818"]
+
+[tool.ruff.lint.per-file-ignores]
+# Nos testes, fixtures do pytest não levam anotação e os helpers locais não
+# levam docstring: o nome do teste já é a documentação.
+"tests/*" = ["D100", "D101", "D102", "D103", "D107", "ANN001", "ANN201", "ANN401", "S101"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+files = ["src", "tests"]

@@ -1,0 +1,95 @@
+# Configuração padrão da varredura de voos.
+# Tudo aqui é editável — nada disso está no código.
+
+[viagem]
+origens = ["CAC", "IGU"]
+adultos = 2
+moeda = "BRL"
+classe = "ECONOMY"
+# Teto de duração de CADA perna (ida e volta, separadamente).
+max_duracao_horas = 6.0
+# Janelas de viagem consideradas.
+noites_fim_de_semana = 3        # sexta -> segunda
+noites_feriado = [3, 4]
+
+[destinos]
+lista = [
+  "GRU", "CGH", "VCP", "CWB", "FLN", "POA", "NVT", "JOI",
+  "GIG", "SDU", "CNF", "BSB", "SSA", "REC", "MCZ", "NAT",
+  "FOR", "JPA", "AJU", "IOS", "BPS", "VIX", "CGB", "CGR",
+  "GYN", "UDI", "LDB", "MGF", "BEL", "SLZ", "THE", "MAO",
+]
+
+[cota]
+# Ambiente de teste da Amadeus: 10 TPS, e cota mensal gratuita (confira o número
+# real em My Self-Service Workspace > API usage and quota).
+max_chamadas_mes = 1800
+concorrencia = 8                # folga sobre o limite de 10 TPS
+ttl_cache_horas = 12
+
+[estimativa]
+# Modelo do limite INFERIOR de duração, usado para podar rotas impossíveis
+# antes de gastar chamada. Tem de ser otimista de propósito: só poda quando
+# nem no melhor caso concebível a rota cabe no teto.
+velocidade_cruzeiro_kmh = 800.0
+overhead_voo_min = 30           # taxi, subida, descida
+conexao_minima_min = 45         # tempo mínimo de conexão
+# Conexão usada no modo de poda agressiva (--poda-agressiva). Mais realista,
+# mas NÃO é um limite inferior seguro: pode esconder oferta válida.
+conexao_realista_min = 90
+
+[feriados]
+# Derivados em runtime pela lib `holidays` (BR), categorias PUBLIC + OPTIONAL.
+# OPTIONAL é obrigatório: Carnaval é ponto facultativo e não sai no PUBLIC.
+categorias = ["PUBLIC", "OPTIONAL"]
+# Facultativos que não geram viagem — removidos do resultado.
+excluidos = [
+  "Véspera de Natal",
+  "Véspera de Ano-Novo",
+  "Dia do Servidor Público",
+  "Início da Quaresma",
+]
+
+# Rotas diretas conhecidas a partir de cada origem. Usadas só para estimar o
+# limite inferior de duração; não restringem o que a API pode devolver.
+[rotas_diretas]
+CAC = ["GRU", "VCP", "CWB", "MCZ"]
+# CONFIRMAR: lista montada por conhecimento de mercado, não medida.
+IGU = ["GRU", "CGH", "VCP", "CWB", "GIG", "SDU", "POA", "FLN", "BSB", "CNF"]
+
+# Coordenadas (graus decimais) de cada aeroporto.
+[aeroportos]
+CAC = [-24.9963, -53.5008]
+IGU = [-25.6003, -54.4850]
+GRU = [-23.4356, -46.4731]
+CGH = [-23.6266, -46.6556]
+VCP = [-23.0074, -47.1345]
+CWB = [-25.5285, -49.1758]
+FLN = [-27.6705, -48.5477]
+POA = [-29.9939, -51.1711]
+NVT = [-26.8800, -48.6514]
+JOI = [-26.2245, -48.7974]
+GIG = [-22.8100, -43.2506]
+SDU = [-22.9105, -43.1631]
+CNF = [-19.6244, -43.9719]
+BSB = [-15.8697, -47.9208]
+SSA = [-12.9086, -38.3225]
+REC = [-8.1264, -34.9236]
+MCZ = [-9.5108, -35.7917]
+NAT = [-5.7681, -35.3764]
+FOR = [-3.7763, -38.5326]
+JPA = [-7.1484, -34.9506]
+AJU = [-10.9840, -37.0703]
+IOS = [-14.8160, -39.0332]
+BPS = [-16.4386, -39.0808]
+VIX = [-20.2581, -40.2864]
+CGB = [-15.6529, -56.1167]
+CGR = [-20.4687, -54.6725]
+GYN = [-16.6320, -49.2207]
+UDI = [-18.8828, -48.2256]
+LDB = [-23.3336, -51.1301]
+MGF = [-23.4794, -52.0136]
+BEL = [-1.3792, -48.4763]
+SLZ = [-2.5853, -44.2341]
+THE = [-5.0600, -42.8236]
+MAO = [-3.0386, -60.0497]
