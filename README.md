@@ -4,6 +4,8 @@ Varre preços de passagens aéreas nacionais saindo do oeste do Paraná (CAC e I
 devolve as melhores oportunidades de viagem curta — sempre 2 adultos, econômica, ida e
 volta.
 
+![Terminal com a simulação de custo em chamadas e a varredura ranqueando as ofertas por preço dentro do teto de 6 horas por perna](docs/prints/varredura-voos.png)
+
 O filtro que define a ferramenta não é o preço: é a **duração**. Para uma viagem de três
 noites, um itinerário de 12 horas com duas conexões inviabiliza a viagem mesmo custando
 metade. Ofertas cuja ida **ou** volta ultrapasse o teto (padrão: 6h) são descartadas

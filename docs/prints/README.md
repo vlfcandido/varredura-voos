@@ -1,7 +1,4 @@
 # Prints
 
-Capturas de tela da execução vão aqui.
-
-<!-- Exemplo, quando houver imagem:
-![Varredura em execução](execucao.png)
--->
+`varredura-voos.png`: saída real da CLI. A simulação usa a configuração embarcada; a
+varredura rodou contra uma Amadeus falsa em localhost (preços e horários fictícios).
