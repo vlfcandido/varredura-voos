@@ -142,3 +142,8 @@ criação de cliente HTTP e sem configuração de logging em nível de módulo. 
 `httpx` é injetado por parâmetro, e os testes o substituem por `MockTransport` — exceto
 `tests/test_integracao_cli.py`, que sobe um servidor HTTP real em localhost para exercer
 o caminho completo da CLI, incluindo OAuth2 e retry.
+
+## Status
+
+Funcional e testado (109 testes, sem rede). Ambiente de teste da Amadeus por padrão;
+`--producao` para inventário real. Uso pessoal.

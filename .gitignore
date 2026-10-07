@@ -15,3 +15,5 @@ build/
 cache/
 estado/
 *.csv
+
+.DS_Store
