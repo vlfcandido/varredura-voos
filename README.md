@@ -16,6 +16,13 @@ noites, um itinerário de 12 horas com duas conexões inviabiliza a viagem mesmo
 metade. Ofertas cuja ida **ou** volta ultrapasse o teto (padrão: 6h) são descartadas
 antes de qualquer ranqueamento.
 
+## Como funciona
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/marca/diagrama-escuro.svg">
+  <img alt="Diagrama: janelas de feriado, cota do mês e cache de 12 h antes de chamar a API Amadeus, filtro de duração e ranking de ofertas" src="docs/marca/diagrama-claro.svg" width="100%">
+</picture>
+
 ## Instalação
 
 ```bash
