@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/marca/cabecalho-escuro.svg">
+  <img alt="varredura-voos" src="docs/marca/cabecalho-claro.svg" width="100%">
+</picture>
+
 # varredura-voos
 
 Varre preços de passagens aéreas nacionais saindo do oeste do Paraná (CAC e IGU) e
